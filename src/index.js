@@ -20,8 +20,10 @@ const filesManager = async () => {
             case '.exit':
                 process.exit()
             case 'up':
+                mdl.up()
                 break
             case 'cd':
+                mdl.cd(string)
                 break
             case 'ls':
                 await mdl.ls()
@@ -54,6 +56,9 @@ const filesManager = async () => {
                 stdout.write(`Invalid input${EOL}`)
                 break
         }
+        stdout.write(`
+        You are currently in ${cwd()}
+        `)
     })
     stdout.write(`
         Welcome to the File Manager, ${username}${EOL}
