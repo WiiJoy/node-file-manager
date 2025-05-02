@@ -1,0 +1,19 @@
+{
+  "name": "node-file-manager",
+  "version": "1.0.0",
+  "description": "rs-school task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WiiJoy/node-file-manager.git"
+  },
+  "author": "Vitalii Rogozin (WiiJoy)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WiiJoy/node-file-manager/issues"
+  },
+  "homepage": "https://github.com/WiiJoy/node-file-manager#readme"
+}
