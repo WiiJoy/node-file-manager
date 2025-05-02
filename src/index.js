@@ -3,7 +3,7 @@ import { EOL, homedir } from 'node:os'
 
 import * as mdl from './modules/index.js'
 
-const filesManager = () => {
+const filesManager = async () => {
     const userString = argv.filter(arg => arg.startsWith('--username'))
     const username = userString[0].split('=')[1]
 
@@ -11,7 +11,7 @@ const filesManager = () => {
 
     const readStream = stdin
 
-    readStream.on('data', (chunk) => {
+    readStream.on('data', async (chunk) => {
         const string = chunk.toString().trim()
         console.log('string', string)
         const command = string.split(' ')[0]
@@ -24,13 +24,14 @@ const filesManager = () => {
             case 'cd':
                 break
             case 'ls':
-                mdl.ls()
+                await mdl.ls()
                 break
             case 'cat':
                 break
             case 'add':
                 break
             case 'mkdir':
+                await mdl.mkdir(string)
                 break
             case 'rn':
                 break
@@ -68,4 +69,4 @@ const filesManager = () => {
     
 }
 
-filesManager()
+await filesManager()
