@@ -41,6 +41,7 @@ const filesManager = () => {
             case 'rm':
                 break
             case 'os':
+                mdl.os(string)
                 break
             case 'hash':
                 break
