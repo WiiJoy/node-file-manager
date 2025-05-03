@@ -8,5 +8,6 @@ import hash from './hash.js'
 import cat from './cat.js'
 import rm from './rm.js'
 import add from './add.js'
+import rn from './rn.js'
 
-export { ls, os, mkdir, up, cd, gzip, hash, cat, rm, add }
+export { ls, os, mkdir, up, cd, gzip, hash, cat, rm, add, rn }

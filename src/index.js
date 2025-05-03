@@ -38,6 +38,7 @@ const filesManager = async () => {
                 await mdl.mkdir(string)
                 break
             case 'rn':
+                await mdl.rn(string)
                 break
             case 'cp':
                 break
