@@ -32,6 +32,7 @@ const filesManager = async () => {
                 mdl.cat(string)
                 break
             case 'add':
+                await mdl.add(string)
                 break
             case 'mkdir':
                 await mdl.mkdir(string)
@@ -43,6 +44,7 @@ const filesManager = async () => {
             case 'mv':
                 break
             case 'rm':
+                await mdl.rm(string)
                 break
             case 'os':
                 mdl.os(string)

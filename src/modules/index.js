@@ -6,5 +6,7 @@ import cd from './cd.js'
 import gzip from './compress.js'
 import hash from './hash.js'
 import cat from './cat.js'
+import rm from './rm.js'
+import add from './add.js'
 
-export { ls, os, mkdir, up, cd, gzip, hash, cat }
+export { ls, os, mkdir, up, cd, gzip, hash, cat, rm, add }
