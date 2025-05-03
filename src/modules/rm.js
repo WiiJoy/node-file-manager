@@ -1,16 +1,13 @@
 import { resolve } from 'node:path'
-import { rm as remove } from 'node:fs'
+import { rm as remove } from 'node:fs/promises'
+import { handleError } from './common.js'
 
-const rm = async (string) => {
-    const stringArr = string.split(' ')
-
-    if (stringArr.length !== 2) {
-        err()
-    } else {
-        const fileToRemove = resolve(stringArr[1])
-        remove(fileToRemove, (err) => {
-            if (err) console.error('Operation failed')
-        })
+const rm = async (file) => {
+    const fileToRemove = resolve(file)
+    try {
+        await remove(fileToRemove)
+    } catch (error) {
+        handleError()
     }
 }
 

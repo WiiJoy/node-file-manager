@@ -1,37 +1,24 @@
 import { resolve } from 'node:path'
-import { createReadStream, access, constants } from 'node:fs'
+import { createReadStream } from 'node:fs'
+import { access, constants } from 'node:fs/promises'
 import { stdout } from 'node:process'
 import { EOL } from 'node:os'
+import { handleError } from './common.js'
 
-const cat = async (string) => {
-    const stringArr = string.split(' ')
-
-    if (stringArr.length !== 2) {
-        err()
-    } else {
-        handleReadFile(stringArr[1])
-    }
-}
-
-const handleReadFile = (file) => {
+const cat = async (file) => {
     const fileToRead = resolve(file)
-    access(fileToRead, constants.F_OK, (error) => {
-        if (error) {
-           err() 
-        } else {
-            const readStream = createReadStream(fileToRead, 'utf-8')
+    try {
+        await access(fileToRead, constants.F_OK)
+        const readStream = createReadStream(fileToRead, 'utf-8')
 
-            readStream.pipe(stdout)
+        readStream.pipe(stdout)
 
-            readStream.on('end', () => {
-                stdout.write(EOL)
-            })
-        }
-    })
-}
-
-const err = () => {
-    console.error('Operation failed')
+        readStream.on('end', () => {
+            stdout.write(EOL)
+        })
+    } catch (error) {
+        handleError('Operation failed')
+    }
 }
 
 export default cat

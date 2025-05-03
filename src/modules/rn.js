@@ -1,29 +1,15 @@
 import { rename } from 'node:fs/promises'
 import { resolve, dirname, join } from 'node:path'
+import { handleError } from './common.js'
 
-const rn = async (string) => {
-    let stringArr = string.split(' ')
-
-    if (stringArr.length !== 3) {
-        err()
-    } else {
-        await handleRename(stringArr[1], stringArr[2])
-    }
-}
-
-const handleRename = async (oldName, newName) => {
-    const oldFileName = resolve(oldName)
-    const newFileName = join(dirname(oldFileName), newName)
-
+const rn = async (oldName, newName) => {
     try {
+        const oldFileName = resolve(oldName)
+        const newFileName = join(dirname(oldFileName), newName)
         await rename(oldFileName, newFileName)
     } catch (error) {
-        err()
+        handleError()
     }
-}
-
-const err = () => {
-    console.error('Operation failed')
 }
 
 export default rn

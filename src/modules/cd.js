@@ -1,22 +1,17 @@
 import { chdir, cwd } from 'node:process'
 import { resolve, parse } from 'node:path'
+import { handleError } from './common.js'
 
-const cd = (string) => {
-    const stringArr = string.split(' ')
+const cd = (path) => {
+    try {
+        const rootDir = parse(cwd()).root
+        const toPath = resolve(path)
 
-    if (stringArr.length < 2) {
-        err()
-    } else {
-        handleChangeDir(stringArr[1])
-    }
-}
-
-const handleChangeDir = (path) => {
-    const rootDir = parse(cwd()).root
-    const toPath = resolve(path)
-
-    if (toPath.startsWith(rootDir)) {
-        changeDir(toPath)
+        if (toPath.startsWith(rootDir)) {
+            changeDir(toPath)
+        }
+    } catch (error) {
+        handleError()
     }
 }
 
@@ -24,12 +19,8 @@ const changeDir = (path) => {
     try {
         chdir(path)
     } catch (error) {
-        err()
+        handleError()
     }
-}
-
-const err = () => {
-    console.error('Operation failed')
 }
 
 export default cd

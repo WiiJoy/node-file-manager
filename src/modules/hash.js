@@ -1,27 +1,33 @@
 import { resolve } from 'node:path'
 import { createHash } from 'node:crypto'
+import { createReadStream } from 'node:fs'
+import { handleError } from './common.js'
 
-const hash = (string) => {
-    const stringArr = string.split(' ')
-
-    if (stringArr.length !== 2) {
-        err()
-    } else {
-        calculateHash(stringArr[1])
+const hash = (file) => {
+    try {
+        calculateHash(file)
+    } catch (error) {
+        handleError()
     }
 }
 
 const calculateHash = (file) => {
     const fileToRead = resolve(file)
+    
+    const readStream = createReadStream(fileToRead)
     const hash = createHash('sha256')
-    hash.update(fileToRead)
-    console.log(`
-    Hash for file: ${hash.digest('hex')}
-    `)
-}
 
-const err = () => {
-    console.error('Operation failed')
+    readStream.on('data', chunck => {
+        hash.update(chunck)
+    })
+
+    readStream.on('error', () => console.error(`
+        Operation failed
+    `))
+
+    readStream.on('end', () => console.log(`
+        Hash for file: ${hash.digest('hex')}
+    `))
 }
 
 export default hash
