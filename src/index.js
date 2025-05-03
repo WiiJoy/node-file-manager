@@ -29,6 +29,7 @@ const filesManager = async () => {
                 await mdl.ls()
                 break
             case 'cat':
+                mdl.cat(string)
                 break
             case 'add':
                 break
