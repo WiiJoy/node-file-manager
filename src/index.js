@@ -65,14 +65,12 @@ const filesManager = async () => {
                 stdout.write(`Invalid input${EOL}`)
                 break
         }
-        stdout.write(`
-        You are currently in ${cwd()}
-        `)
+        outputCurrentDir()
     })
     stdout.write(`
-        Welcome to the File Manager, ${username}${EOL}
-        You are currently in ${cwd()}
+        Welcome to the File Manager, ${username}
     `)
+    outputCurrentDir()
 
     process.on('SIGINT', () => process.exit())
     process.on('exit', () => {
@@ -80,7 +78,14 @@ const filesManager = async () => {
             ${EOL}Thank you for using File Manager, ${username}, goodbye!${EOL}
         `)
     })
-    
+}
+
+const outputCurrentDir = () => {
+    setTimeout(() => {
+        stdout.write(`
+        You are currently in ${cwd()}${EOL}
+        `)
+    }, 10)
 }
 
 await filesManager()
