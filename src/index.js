@@ -41,8 +41,16 @@ const filesManager = async () => {
                 await mdl.rn(string)
                 break
             case 'cp':
+                await mdl.copy({
+                    string: string,
+                    type: 'copy'
+                })
                 break
             case 'mv':
+                await mdl.copy({
+                    string: string,
+                    type: 'move'
+                })
                 break
             case 'rm':
                 await mdl.rm(string)

@@ -9,5 +9,6 @@ import cat from './cat.js'
 import rm from './rm.js'
 import add from './add.js'
 import rn from './rn.js'
+import copy from './copy.js'
 
-export { ls, os, mkdir, up, cd, gzip, hash, cat, rm, add, rn }
+export { ls, os, mkdir, up, cd, gzip, hash, cat, rm, add, rn, copy }
