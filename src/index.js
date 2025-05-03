@@ -47,6 +47,7 @@ const filesManager = async () => {
                 mdl.os(string)
                 break
             case 'hash':
+                mdl.hash(string)
                 break
             case 'compress':
                 mdl.gzip({

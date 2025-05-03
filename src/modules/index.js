@@ -4,5 +4,6 @@ import mkdir from './mkdir.js'
 import up from './up.js'
 import cd from './cd.js'
 import gzip from './compress.js'
+import hash from './hash.js'
 
-export { ls, os, mkdir, up, cd, gzip }
+export { ls, os, mkdir, up, cd, gzip, hash }
