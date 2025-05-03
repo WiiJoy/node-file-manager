@@ -49,8 +49,16 @@ const filesManager = async () => {
             case 'hash':
                 break
             case 'compress':
+                mdl.gzip({
+                    string: string,
+                    type: 'compress'
+                })
                 break
             case 'decompress':
+                mdl.gzip({
+                    string: string,
+                    type: 'decompress'
+                })
                 break
             default:
                 stdout.write(`Invalid input${EOL}`)
