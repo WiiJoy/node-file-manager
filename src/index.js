@@ -14,7 +14,6 @@ const filesManager = async () => {
 
     readStream.on('data', async (chunk) => {
         const string = chunk.toString().trim()
-        console.log('string', string)
         await mdl(string)
 
         outputCurrentDir()
