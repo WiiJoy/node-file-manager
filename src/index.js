@@ -6,7 +6,7 @@ import mdl from './modules/index.js'
 
 const filesManager = async () => {
     const userString = argv.filter(arg => arg.startsWith('--username'))
-    const username = userString[0].split('=')[1]
+    const username = userString[0] ? userString[0].split('=')[1] : 'User'
 
     chdir(homedir())
 
